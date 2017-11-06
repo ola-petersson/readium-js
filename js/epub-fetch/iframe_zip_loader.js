@@ -40,8 +40,8 @@ define(['URIjs', 'readium_shared_js/views/iframe_loader', 'underscore', './disco
                     //console.debug(iframe.ownerDocument.defaultView.location);
                     iframe.baseURI = iframe.ownerDocument.defaultView.frameElement.getAttribute("data-loadUri");
                     
-                    console.log("EPUB doc iframe src (BEFORE):");
-                    console.log(src);
+                    //console.log("EPUB doc iframe src (BEFORE):");
+                    //console.log(src);
                     src = new URI(src).absoluteTo(iframe.baseURI).search('').hash('').toString();
                 }
                 else if (typeof location !== 'undefined') {
@@ -51,25 +51,25 @@ define(['URIjs', 'readium_shared_js/views/iframe_loader', 'underscore', './disco
                 console.error("!iframe.baseURI => " + iframe.baseURI);
             }
             
-            console.log("EPUB doc iframe src:");
-            console.log(src);
+            //console.log("EPUB doc iframe src:");
+            //console.log(src);
             iframe.setAttribute("data-src", src);
             
-            console.log("EPUB doc iframe base URI:");
-            console.log(iframe.baseURI);
+            //console.log("EPUB doc iframe base URI:");
+            //console.log(iframe.baseURI);
             iframe.setAttribute("data-baseUri", iframe.baseURI);
             
 
             var loadedDocumentUri = new URI(src).absoluteTo(iframe.baseURI).search('').hash('').toString();
 
-            console.log("EPUB doc iframe LOAD URI:");
-            console.log(loadedDocumentUri);
+            //console.log("EPUB doc iframe LOAD URI:");
+            //console.log(loadedDocumentUri);
             iframe.setAttribute("data-loadUri", loadedDocumentUri);
             
             var shouldConstructDomProgrammatically = getCurrentResourceFetcher().shouldConstructDomProgrammatically();
             if (shouldConstructDomProgrammatically) {
                 
-                console.log("shouldConstructDomProgrammatically...");
+                //console.log("shouldConstructDomProgrammatically...");
 
                 getCurrentResourceFetcher().fetchContentDocument(attachedData, loadedDocumentUri,
                     function (resolvedContentDocumentDom) {
@@ -186,7 +186,7 @@ define(['URIjs', 'readium_shared_js/views/iframe_loader', 'underscore', './disco
                             child_iframe.frameElement,
                             childSrc,
                             function() {
-                                console.log("CHILD IFRAME LOADED.");
+                                //console.log("CHILD IFRAME LOADED.");
                             },
                             self,
                             {
@@ -201,7 +201,7 @@ define(['URIjs', 'readium_shared_js/views/iframe_loader', 'underscore', './disco
                 }
                 
                 $('svg', doc).on("load", function(){
-                    console.log('SVG loaded');
+                    //console.log('SVG loaded');
                 });
                 
                 self.updateIframeEvents(iframe);
@@ -209,7 +209,7 @@ define(['URIjs', 'readium_shared_js/views/iframe_loader', 'underscore', './disco
                 var mathJax = iframe.contentWindow.MathJax;
                 if (mathJax) {
                     
-                    console.log("MathJax VERSION: " + mathJax.cdnVersion + " // " + mathJax.fileversion + " // " + mathJax.version);
+                    //console.log("MathJax VERSION: " + mathJax.cdnVersion + " // " + mathJax.fileversion + " // " + mathJax.version);
                     
                     var useFontCache = true; // default in MathJax
                     
